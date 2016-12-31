@@ -28,10 +28,20 @@ Instantiates a virtual record.
 
 ### find(criteria: Object) : Promise<*>
 
+Returns promise resolving to the first item in the list matching the criteria, if any.
+
 The `criteria` is the set of key-value pairs by which to filter items.
 
-### where(criteria: Object, searchQuery?: String|Array<String>, parameters?: Object) : Promise<Array<*>>
+### where(criteria: Object, searchQuery?: String, options?: Object) : Promise<Array<*>>
 
-The `parameters` object has: {sort?: Object, offset?: Number, limit?: Number}
+Returns promise resolving to list of all items matching criteria and search query (if any)
+and then sorted and/or paginated according to options (if any).
 
-### count(criteria: Object, searchQuery?: String|Array<String>, parameters?: Object) : Promise<Number>
+The `options` object has: {sort?: Object, offset?: Number, limit?: Number}
+
+The `options.sort` object has keys corresponding to names of fields in list items
+and values 1 for ascending order and -1 for descending order.
+
+### count(criteria: Object, searchQuery?: String, parameters?: Object) : Promise<Number>
+
+Returns promise resolving to the number of items in the list that would be resolved by the corresponding call to `where`.
